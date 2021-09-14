@@ -1,0 +1,35 @@
+options {
+    Ignore_Case = false;
+}
+
+PARSER_BEGIN (Practica1)
+public class Practica1 {
+    public static void main (String[] argum) throws ParseException {
+        Practica1 anLexSint = new Practica1 (System.in);
+        anLexSint.unaExpresion();
+        System.out.println("Analisis terminado");
+    }
+}
+PARSER_END(Practica1)
+
+//Generando tokens
+TOKEN:
+{
+    <OPSUMA: "+"> {System.out.println("Suma");} |
+    <OPRESTA: "-"> {System.out.println("Resta");} |
+    <OPMULTI: "*"> {System.out.println("Multiplicacion");} |
+    <OPDIVISION: "/"> {System.out.println("Division");} |
+    <OPMODULO: "%"> {System.out.println("Modulo");} |
+    <LETRAMIN: ["a"-"z"]> {System.out.println("Letra Minuscula");}|
+    <LETRAMAY: ["A"-"Z"]> {System.out.println("Letra Mayuscula");}|
+    <PARENTESIS: "(" | ")"> {System.out.println("Parentesis");}|
+    <DECIMAL: ((["0"-"9"])* | "." (["0"-"9"])?)> {System.out.println("Digito Decimal");}|
+    <HEXADECIMAL: ("0"("x" | "X") (["0"-"9"]) (["a"-"f"]) (["A"-"F"]))> {System.out.println("Degito hexadecimal");}
+}
+
+//SKIP funciona para ignorar los siguientes terminos
+SKIP:{" " | "\t" | "\n" | "\r"}
+
+void unaExpresion():{}{
+    (<OPSUMA> | <OPRESTA> | <OPMULTI> | <OPDIVISION> | <OPMODULO> | <LETRAMIN> |<LETRAMAY> | <PARENTESIS> | <DECIMAL> | <HEXADECIMAL>) + <EOF>
+}

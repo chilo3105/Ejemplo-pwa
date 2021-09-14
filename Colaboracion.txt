@@ -1,2 +1,6 @@
 ---Primer archivo---
+<<<<<<< HEAD
 1.- 
+=======
+Isidro Rodriguez Fuerte
+>>>>>>> f9a4122758556ed977eb73bdcf1b1a820fe96f0a
